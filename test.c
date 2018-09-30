@@ -37,7 +37,7 @@ int main(int argc, char const *argv[]) {
   }
 
   int inputVec[numInputNodes]; // creating variable to store input values
-  int pictureIndex = 1;
+  int pictureIndex = 2;
 
   float learningRate = 0.1;
   // number of training loops
@@ -56,7 +56,7 @@ int main(int argc, char const *argv[]) {
   // 4 = 6
   // ...
 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 6; i++) {
 
     printf("\n\nImage noise = %.02f\n\n", sampNoise);
 
