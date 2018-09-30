@@ -43,6 +43,8 @@ int main(int argc, char const *argv[]) {
   // number of training loops
   int trainLoopNum = 20;
 
+  float weightMatrix[numOutputNodes][numInputNodes];
+
   float target[numOutputNodes];
 
   // create array to store outputs
@@ -71,7 +73,6 @@ int main(int argc, char const *argv[]) {
       get_input(inputVec, zData, pictureIndex, sampNoise);
       draw_input(inputVec, zData[pictureIndex].label);
 
-      float weightMatrix[numOutputNodes][numInputNodes];
       createRandomWeightMatrix(weightMatrix);
 
       int whichNumber = initializeTarget(target, zData[pictureIndex].label);
