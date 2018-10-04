@@ -37,12 +37,10 @@ int main(int argc, char const *argv[]) {
       return -1;
   }
 
-  int inputVec[numInputNodes]; // creating variable to store input values
-  // int pictureIndex = 0;
+  // creating variable to store input values
+  int inputVec[numInputNodes];
 
   float learningRate = 0.5;
-  // number of training loops
-  // int trainLoopNum = 20;
 
   float target[numOutputNodes];
 
@@ -60,22 +58,11 @@ int main(int argc, char const *argv[]) {
   float weightMatrix[numOutputNodes][numInputNodes];
   createRandomWeightMatrix(weightMatrix);
 
-  // float averageError;
-
-  // // load MNIST picture and convert it to a vector
-  // get_input(inputVec, zData, pictureIndex, sampNoise);
-  //
-  // // draw the picture with specified label
-  // draw_input(inputVec, zData[pictureIndex].label);
-
-
   // loadType = 0, 60k training images
   // loadType = 1, 10k testing images
   // loadType = 2, 10 specific images from training set
   // printf("number of training patterns = %d\n", sizeData);
-for(float noise = 0.0; noise < 0.6; noise += 0.1) {
-
-  // printf("sampNoise = %.02f\n", noise);
+  for(float noise = 0.0; noise < 0.6; noise += 0.1) {
 
   createRandomWeightMatrix(weightMatrix);
 
@@ -88,16 +75,12 @@ for(float noise = 0.0; noise < 0.6; noise += 0.1) {
         // draw_input(inputVec, zData[pictureIndex].label);
 
         initializeTarget(target, zData[pictureIndex].label);
-          // printf("\nTraining loop #%d for pictureIndex #%d\n\n", i, pictureIndex);
 
         getOutput(output, inputVec, weightMatrix);
 
         squashOutput(output);
 
         getError(error, target, output);
-        //
-        // printf("%f ", getAverageError(error));
-        //
         theError += getAverageError(error);
 
         updateWights(weightMatrix, inputVec, error, learningRate);
@@ -108,23 +91,6 @@ for(float noise = 0.0; noise < 0.6; noise += 0.1) {
   printf("\n");
 
 }
-
-
-
-
-
-
-  // int outPic = 6;
-  // get_input(inputVec, zData, outPic, 0);
-  // draw_input(inputVec, zData[outPic].label);
-  //
-  // getOutput(output, inputVec, weightMatrix);
-  //
-  // squashOutput(output);
-  //
-  // for(int i = 0; i < 10; i++) {
-  //   printf("squashedOutput[%d] = %f\n", i, output[i]);
-  // }
 
   return 0;
 

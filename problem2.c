@@ -45,13 +45,9 @@ int main(int argc, char const *argv[]) {
       return -1;
   }
 
+  // creating variable to store input values
+  int inputVec[numInputNodes];
 
-  int inputVec[numInputNodes]; // creating variable to store input values
-  // int pictureIndex = 0;
-
-  // float learningRate = 0.5;
-  // number of training loops
-  // int trainLoopNum = 20;
 
   float target[numOutputNodes];
 
@@ -69,51 +65,33 @@ int main(int argc, char const *argv[]) {
   float weightMatrix[numOutputNodes][numInputNodes];
   createRandomWeightMatrix(weightMatrix);
 
-  // float averageError;
-
-  // // load MNIST picture and convert it to a vector
-  // get_input(inputVec, zData, pictureIndex, sampNoise);
-  //
-  // // draw the picture with specified label
-  // draw_input(inputVec, zData[pictureIndex].label);
-
 
   // loadType = 0, 60k training images
   // loadType = 1, 10k testing images
   // loadType = 2, 10 specific images from training set
-  // printf("number of training patterns = %d\n", sizeData);
 
-// for(float learningRate = 0.1; learningRate >= 0.01; learningRate /= 10) {
 for(float learningRate = 0.1; learningRate >= 0.00001; learningRate /= 10) {
 
-  // printf("sampNoise = %.02f\n", noise);
 
   createRandomWeightMatrix(weightMatrix);
 
   for(int epochs = 0; epochs < 20; epochs++) {
 
-    // printf("\nSimulation #%d\n\n", simulation);
-    // float theError = 0;
     for(int pictureIndex = 0; pictureIndex < sizeData; pictureIndex++){
         get_input(inputVec, zData, pictureIndex, sampNoise);
         // draw_input(inputVec, zData[pictureIndex].label);
 
         initializeTarget(target, zData[pictureIndex].label);
-          // printf("\nTraining loop #%d for pictureIndex #%d\n\n", i, pictureIndex);
 
         getOutput(output, inputVec, weightMatrix);
 
         squashOutput(output);
 
         getError(error, target, output);
-        //
-        // printf("%f ", getAverageError(error));
-        //
-        // theError += getAverageError(error);
 
         updateWights(weightMatrix, inputVec, error, learningRate);
     }
-    // printf("%f, ", (theError / sizeData));
+
     float theError = 0;
 
     for(int testImage = 0; testImage < sizeData1; testImage++) {
@@ -125,10 +103,6 @@ for(float learningRate = 0.1; learningRate >= 0.00001; learningRate /= 10) {
       getOutput(output, inputVec, weightMatrix);
 
       squashOutput(output);
-      //
-      // for(int outIndex = 0; outIndex < 10; outIndex++) {
-      //   printf("squashedOutput[%d] = %f\n", outIndex, output[outIndex]);
-      // }
 
       getError(error, target, output);
 
@@ -141,22 +115,6 @@ for(float learningRate = 0.1; learningRate >= 0.00001; learningRate /= 10) {
 
 
 }
-
-
-
-
-
-//   int outPic = 6;
-//   get_input(inputVec, zData, outPic, 0);
-//   draw_input(inputVec, zData[outPic].label);
-//
-//   getOutput(output, inputVec, weightMatrix);
-//
-//   squashOutput(output);
-//
-//   for(int i = 0; i < 10; i++) {
-//     printf("squashedOutput[%d] = %f\n", i, output[i]);
-//   }
 
   return 0;
 
