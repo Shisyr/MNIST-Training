@@ -90,7 +90,7 @@ for(float learningRate = 0.1; learningRate >= 0.00001; learningRate /= 10) {
 
   createRandomWeightMatrix(weightMatrix);
 
-  for(int simulation = 0; simulation < 5; simulation++) {
+  for(int epochs = 0; epochs < 20; epochs++) {
 
     // printf("\nSimulation #%d\n\n", simulation);
     // float theError = 0;
@@ -118,8 +118,9 @@ for(float learningRate = 0.1; learningRate >= 0.00001; learningRate /= 10) {
 
     for(int testImage = 0; testImage < sizeData1; testImage++) {
 
-      get_input(inputVec, zData, testImage, sampNoise);
+      get_input(inputVec, zData1, testImage, sampNoise);
       // draw_input(inputVec, zData[testImage].label);
+      initializeTarget(target, zData1[testImage].label);
 
       getOutput(output, inputVec, weightMatrix);
 
